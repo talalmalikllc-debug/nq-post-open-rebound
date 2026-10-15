@@ -1,0 +1,55 @@
+days with a 250-day history: 1942 (2017-05-17 -> 2026-10-09)
+fixed TRAIN thresholds (overnight %): 5% -> -1.06%, 10% -> -0.70%, 20% -> -0.35%
+rolling 10% threshold ranged from -1.38% to -0.29% over time
+
+=== ROLLING QUANTILE - STEP 1: choose on TRAIN only (GROSS, no costs) ===
+rolling bottom  5% | none        trades=  68 avg gross= +4.86 pt  t=+0.97  win= 50.0%
+rolling bottom  5% | R5>0        trades=  51 avg gross= +4.18 pt  t=+0.89  win= 51.0%
+rolling bottom  5% | R5<0        trades=  17 avg gross= +6.90 pt  t=+0.48  win= 47.1%
+rolling bottom 10% | none        trades= 118 avg gross= +2.53 pt  t=+0.56  win= 49.2%
+rolling bottom 10% | R5>0        trades=  78 avg gross= +0.67 pt  t=-0.01  win= 51.3%
+rolling bottom 10% | R5<0        trades=  40 avg gross= +6.14 pt  t=+0.81  win= 45.0%
+rolling bottom 20% | none        trades= 214 avg gross= +0.99 pt  t=+0.10  win= 51.9%
+rolling bottom 20% | R5>0        trades= 132 avg gross= -0.44 pt  t=-0.33  win= 53.8%
+rolling bottom 20% | R5<0        trades=  79 avg gross= +3.04 pt  t=+0.51  win= 48.1%
+FROZEN: rolling bottom 10% | R5<0
+  TRAIN     trades= 40 avg gross=  +6.14 pt (t=+0.91, one-sided p=0.183) median=  -3.00 win= 47.5%  avg %=+0.041%
+  VALIDATE  trades= 15 avg gross= -54.45 pt (t=-3.22, one-sided p=0.997) median= -66.25 win= 26.7%  avg %=-0.432%
+  TEST      trades= 34 avg gross= +23.03 pt (t=+1.07, one-sided p=0.146) median=  -6.25 win= 50.0%  avg %=+0.088%
+  VAL+TEST: trades=49 gross=-0.69 pt (t=-0.04, one-sided p=0.517); median=-25.00; without best 3 trades: -19.92 pt; in %: -0.071% per trade
+  all rules in all periods (after freezing, transparency):
+    rolling bottom  5% | none       TRAIN n= 68 gross=  +4.86  VALID n= 24 gross= -13.09  TEST n= 34 gross= +30.60
+    rolling bottom  5% | R5>0       TRAIN n= 51 gross=  +4.18  VALID n= 15 gross= +16.92  TEST n= 16 gross=  +6.52
+    rolling bottom  5% | R5<0       TRAIN n= 17 gross=  +6.90  VALID n=  9 gross= -63.11  TEST n= 18 gross= +52.01
+    rolling bottom 10% | none       TRAIN n=118 gross=  +2.53  VALID n= 37 gross= -11.85  TEST n= 62 gross= +11.74
+    rolling bottom 10% | R5>0       TRAIN n= 78 gross=  +0.67  VALID n= 22 gross= +17.19  TEST n= 28 gross=  -1.97
+    rolling bottom 10% | R5<0       TRAIN n= 40 gross=  +6.14  VALID n= 15 gross= -54.45  TEST n= 34 gross= +23.03
+    rolling bottom 20% | none       TRAIN n=214 gross=  +0.99  VALID n= 89 gross= -14.54  TEST n=121 gross=  +1.10
+    rolling bottom 20% | R5>0       TRAIN n=132 gross=  -0.44  VALID n= 51 gross=  +3.56  TEST n= 67 gross=  -1.16
+    rolling bottom 20% | R5<0       TRAIN n= 79 gross=  +3.04  VALID n= 38 gross= -38.83  TEST n= 53 gross=  +3.09
+
+=== FIXED QUANTILE - STEP 1: choose on TRAIN only (GROSS, no costs) ===
+fixed bottom  5% | none          trades=  55 avg gross= +6.05 pt  t=+1.00  win= 49.1%
+fixed bottom  5% | R5>0          trades=  39 avg gross= +6.53 pt  t=+1.13  win= 53.8%
+fixed bottom  5% | R5<0          trades=  16 avg gross= +4.89 pt  t=+0.30  win= 37.5%
+fixed bottom 10% | none          trades= 110 avg gross= +1.47 pt  t=+0.19  win= 47.3%
+fixed bottom 10% | R5>0          trades=  72 avg gross= -0.44 pt  t=-0.29  win= 50.0%
+fixed bottom 10% | R5<0          trades=  38 avg gross= +5.07 pt  t=+0.54  win= 42.1%
+fixed bottom 20% | none          trades= 212 avg gross= -0.07 pt  t=-0.28  win= 50.0%
+fixed bottom 20% | R5>0          trades= 129 avg gross= -2.17 pt  t=-0.78  win= 51.2%
+fixed bottom 20% | R5<0          trades=  82 avg gross= +2.81 pt  t=+0.46  win= 47.6%
+FROZEN: fixed bottom  5% | R5>0
+  TRAIN     trades= 39 avg gross=  +6.53 pt (t=+1.27, one-sided p=0.107) median=  +2.50 win= 53.8%  avg %=+0.053%
+  VALIDATE  trades= 22 avg gross=  +7.06 pt (t=+0.47, one-sided p=0.321) median=  -7.38 win= 45.5%  avg %=+0.062%
+  TEST      trades= 23 avg gross=  -3.66 pt (t=-0.15, one-sided p=0.561) median=  -9.75 win= 43.5%  avg %=-0.006%
+  VAL+TEST: trades=45 gross=+1.58 pt (t=+0.11, one-sided p=0.455); median=-9.75; without best 3 trades: -10.74 pt; in %: +0.027% per trade
+  all rules in all periods (after freezing, transparency):
+    fixed bottom  5% | none         TRAIN n= 55 gross=  +6.05  VALID n= 39 gross= -15.04  TEST n= 49 gross= +14.72
+    fixed bottom  5% | R5>0         TRAIN n= 39 gross=  +6.53  VALID n= 22 gross=  +7.06  TEST n= 23 gross=  -3.66
+    fixed bottom  5% | R5<0         TRAIN n= 16 gross=  +4.89  VALID n= 17 gross= -43.65  TEST n= 26 gross= +30.99
+    fixed bottom 10% | none         TRAIN n=110 gross=  +1.47  VALID n= 81 gross= -11.56  TEST n= 74 gross=  +9.87
+    fixed bottom 10% | R5>0         TRAIN n= 72 gross=  -0.44  VALID n= 48 gross=  +6.84  TEST n= 36 gross=  +5.81
+    fixed bottom 10% | R5<0         TRAIN n= 38 gross=  +5.07  VALID n= 33 gross= -38.34  TEST n= 38 gross= +13.71
+    fixed bottom 20% | none         TRAIN n=212 gross=  -0.07  VALID n=140 gross= -10.07  TEST n=144 gross=  -0.03
+    fixed bottom 20% | R5>0         TRAIN n=129 gross=  -2.17  VALID n= 80 gross=  -2.77  TEST n= 82 gross=  -4.34
+    fixed bottom 20% | R5<0         TRAIN n= 82 gross=  +2.81  VALID n= 59 gross= -19.26  TEST n= 61 gross=  +4.98

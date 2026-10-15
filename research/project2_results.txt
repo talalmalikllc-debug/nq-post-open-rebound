@@ -1,0 +1,42 @@
+sample days with features: 2102  (2016-08-12 -> 2026-10-09)
+costs per round trip (points): optimistic=0.475, base=0.725, stress=1.225
+  TRAIN     days=1109  unconditional long 09:35->10:00 avg gross=+0.94 pt
+  VALIDATE  days= 416  unconditional long 09:35->10:00 avg gross=-0.36 pt
+  TEST      days= 577  unconditional long 09:35->10:00 avg gross=-1.50 pt
+
+=== STEP 1 - TRAIN 2016-06..2021-12: all 9 pre-registered rules (net = base cost) ===
+z<=-1.0 | none       trades= 126 gross= +3.18 net= +2.46 pt  t=+0.75  win= 51.6%
+z<=-1.0 | R5>0       trades=  81 gross= +2.57 net= +1.85 pt  t=+0.56  win= 55.6%
+z<=-1.0 | R5<0       trades=  45 gross= +4.28 net= +3.55 pt  t=+0.50  win= 44.4%
+z<=-1.5 | none       trades=  71 gross= +5.36 net= +4.63 pt  t=+1.13  win= 47.9%
+z<=-1.5 | R5>0       trades=  51 gross= +7.43 net= +6.70 pt  t=+1.82  win= 54.9%
+z<=-1.5 | R5<0       trades=  20 gross= +0.07 net= -0.65 pt  t=-0.06  win= 30.0%
+z<=-2.0 | none       trades=  46 gross= +7.82 net= +7.10 pt  t=+1.35  win= 52.2%
+z<=-2.0 | R5>0       trades=  38 gross= +8.61 net= +7.89 pt  t=+1.86  win= 57.9%
+z<=-2.0 | R5<0       trades=   8 gross= +4.06 net= +3.34 pt  t=+0.14  win= 25.0%
+
+FROZEN RULE (chosen on TRAIN only): z<=-2.0 | R5>0
+
+=== H0 test: after large drops (z<=-1.5), is 09:35->10:00 higher than on other days? (gross, all periods) ===
+large-drop days n=137 avg=+6.60 pt | other days n=1965 avg=-0.44 pt | Welch t=+1.04, one-sided p=0.149
+slope of 09:35->10:00 points on z (all days): -0.69 pt per 1 sd, p(two-sided)=0.569  (negative slope = bigger drops -> bigger rebound)
+
+=== STEP 2/3 - frozen rule 'z<=-2.0 | R5>0' on unseen periods ===
+TRAIN     trades= 38 gross= +8.61 | net optimistic= +8.14 base= +7.89 (t=+1.86, p=0.036) stress= +7.39 pt | win(base)= 57.9%  total(base)=$+5,994
+VALIDATE  trades=  8 gross=+50.00 | net optimistic=+49.53 base=+49.28 (t=+1.54, p=0.084) stress=+48.78 pt | win(base)= 62.5%  total(base)=$+7,884
+TEST      trades= 10 gross=+52.88 | net optimistic=+52.40 base=+52.15 (t=+1.86, p=0.048) stress=+51.65 pt | win(base)= 60.0%  total(base)=$+10,430
+VAL+TEST combined: trades=18  net(base)=+50.87 pt  t=+2.49  one-sided p=0.012
+bootstrap 95% range for avg net (base) out of sample: +11.70 .. +90.03 pt
+extra 1-minute delay (entry 09:36 open, 2022+ trades n=18): gross=+59.89  net(base)=+59.16 pt
+
+=== APPENDIX: all 9 rules in every period, net at base cost (shown AFTER freezing, for honesty) ===
+rule                                  TRAIN               VALIDATE                   TEST
+z<=-1.0 | none             n=126 net= +2.46       n= 62 net=-10.45       n= 65 net= +6.32
+z<=-1.0 | R5>0             n= 81 net= +1.85       n= 37 net= +6.46       n= 31 net= -7.52
+z<=-1.0 | R5<0             n= 45 net= +3.55       n= 25 net=-35.47       n= 34 net=+18.95
+z<=-1.5 | none             n= 71 net= +4.63       n= 26 net=-17.25       n= 40 net=+23.12
+z<=-1.5 | R5>0             n= 51 net= +6.70       n= 16 net= +6.43       n= 19 net= +2.60
+z<=-1.5 | R5<0             n= 20 net= -0.65       n= 10 net=-55.15       n= 21 net=+41.68
+z<=-2.0 | none             n= 46 net= +7.10       n= 11 net=+24.80       n= 26 net=+61.18
+z<=-2.0 | R5>0             n= 38 net= +7.89       n=  8 net=+49.28       n= 10 net=+52.15
+z<=-2.0 | R5<0             n=  8 net= +3.34       n=  3 net=-40.47       n= 16 net=+66.82

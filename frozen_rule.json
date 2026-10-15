@@ -1,0 +1,29 @@
+{
+  "name": "NQ post-open rebound after extreme overnight drop",
+  "frozen_on": "2026-10-14",
+  "frozen_after_data_until": "2026-10-09",
+  "status": "FROZEN - do not change any parameter. Evaluate only on trades AFTER frozen_on (forward paper trading).",
+  "instrument": "NQ (E-mini Nasdaq-100 futures), front month, 1 contract",
+  "timezone": "America/New_York",
+  "trading_days": "NYSE full sessions only (skip half-days); skip days from 11 calendar days before each quarterly expiry (3rd Friday Mar/Jun/Sep/Dec) through expiry day",
+  "signal": {
+    "overnight_return_pct": "(price at 09:30:00 open / previous NYSE session 16:00 close - 1) * 100",
+    "volatility": "sample std of overnight_return_pct over the previous 60 eligible days (today excluded)",
+    "z": "overnight_return_pct / volatility",
+    "condition_1": "z <= -2.0",
+    "first5_return_pct": "(last price before 09:35:00 / 09:30 open - 1) * 100",
+    "condition_2": "first5_return_pct > 0"
+  },
+  "trade": {
+    "direction": "LONG only",
+    "entry": "market order at 09:35:00 (first trade at/after 09:35)",
+    "exit": "market order at 10:00:00 (last trade before 10:00)",
+    "stops_or_targets": "none"
+  },
+  "backtest_reference": {
+    "train_2016-08_to_2021-12": {"trades": 38, "avg_gross_pts": 8.61},
+    "validate_2022-2023": {"trades": 8, "avg_gross_pts": 50.00},
+    "test_2024_to_2026-10": {"trades": 10, "avg_gross_pts": 52.88},
+    "cost_model_pts_round_trip": {"optimistic": 0.475, "base": 0.725, "stress": 1.225, "extreme": 2.225}
+  }
+}

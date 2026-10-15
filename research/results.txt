@@ -1,0 +1,118 @@
+=== SAMPLE ===
+main sample days: 2142  (2016-06-02 -> 2026-10-09); with roll days: 2544
+sd(R_ON)=0.795%  sd(R_FH)=0.438%  mean R_ON=0.0472%  mean R_FH=0.0101%
+share of days R_ON<0: 0.434
+corr(R_ON pre-open signal, R_ON at 09:30 open) = 0.99998; same sign on 0.9981 of days
+
+=== PAPER TABLE 1: R_interval = a + b*R_ON  (paper SPY: FH -9.19***, M 3.32, SLH 1.53, LH 6.39***) ===
+R_FH                               beta(x100)=  -4.15**  t= -2.42  p(beta<0)=0.0077  adjR2= 0.52%  n=2142
+R_M                                beta(x100)=   2.22    t=  0.67  p(beta<0)=0.7499  adjR2=-0.00%  n=2142
+R_SLH                              beta(x100)=   0.45    t=  0.54  p(beta<0)=0.7044  adjR2=-0.02%  n=2142
+R_LH                               beta(x100)=  -1.10    t= -0.91  p(beta<0)=0.1811  adjR2= 0.04%  n=2142
+
+=== PAPER TABLE 2: lagged intraday returns (paper: lags insignificant, R_ON stays -8.81***) ===
+R_FH on R_FH_lag                   beta(x100)=  -6.77*** t= -2.68  p(beta<0)=0.0037  adjR2= 0.41%  n=2138
+R_FH on R_M_lag                    beta(x100)=  -1.57    t= -0.94  p(beta<0)=0.1739  adjR2= 0.04%  n=2139
+R_FH on R_SLH_lag                  beta(x100)=  -4.44    t= -0.85  p(beta<0)=0.1979  adjR2= 0.01%  n=2141
+R_FH on R_LH_lag                   beta(x100)=  -9.29**  t= -2.05  p(beta<0)=0.0203  adjR2= 0.38%  n=2141
+R_FH on R_ON + all lags (R_ON coef) beta(x100)=  -4.11**  t= -2.40  p(beta<0)=0.0082  adjR2= 1.27%  n=2137
+
+=== HORIZONS: R(09:30 -> X) on R_ON  (paper SPY: 15m -5.94, 30m -9.19, 45m -9.47, 60m -9.67, all ***) ===
+09:30 -> 5m                        beta(x100)=  -4.12*** t= -5.68  p(beta<0)=0.0000  adjR2= 2.29%  n=2142
+09:30 -> 15m                       beta(x100)=  -4.03*** t= -3.05  p(beta<0)=0.0011  adjR2= 0.85%  n=2142
+09:30 -> 30m                       beta(x100)=  -4.15**  t= -2.42  p(beta<0)=0.0077  adjR2= 0.52%  n=2142
+09:30 -> 45m                       beta(x100)=  -5.28**  t= -2.41  p(beta<0)=0.0079  adjR2= 0.57%  n=2136
+09:30 -> 60m                       beta(x100)=  -4.23**  t= -2.12  p(beta<0)=0.0168  adjR2= 0.30%  n=2136
+09:30 -> 90m                       beta(x100)=  -4.97**  t= -2.16  p(beta<0)=0.0155  adjR2= 0.32%  n=2137
+09:30 -> 150m                      beta(x100)=  -4.44    t= -1.53  p(beta<0)=0.0627  adjR2= 0.17%  n=2139
+09:30 -> to 16:00                  beta(x100)=  -2.60    t= -0.58  p(beta<0)=0.2805  adjR2=-0.01%  n=2142
+
+=== PAPER TABLE A4: split by sign of R_ON (paper SPY: positive -5.41**, negative -14.65***) ===
+R_ON > 0                           beta(x100)=  -1.54    t= -0.56  p(beta<0)=0.2878  adjR2=-0.04%  n=1210
+R_ON < 0                           beta(x100)= -11.49*** t= -3.49  p(beta<0)=0.0002  adjR2= 2.07%  n=930
+
+=== PAPER TABLE 3: split by first-30-min realized vol / volume (paper: high vol -9.82, low -5.34) ===
+   NOTE: like the paper, this split uses 09:30-10:00 information -> descriptive only, NOT tradable.
+low realized vol                   beta(x100)=   1.05    t=  0.64  p(beta<0)=0.7382  adjR2=-0.05%  n=1071
+high realized vol                  beta(x100)=  -6.19*** t= -2.90  p(beta<0)=0.0019  adjR2= 1.09%  n=1071
+low volume (by year)               beta(x100)=   0.05    t=  0.02  p(beta<0)=0.5095  adjR2=-0.09%  n=1074
+high volume (by year)              beta(x100)=  -6.78*** t= -3.05  p(beta<0)=0.0011  adjR2= 1.40%  n=1068
+   tradable version: split by |yesterday's 09:30->16:00 return| vs its own trailing 1y median (known pre-open)
+calm yesterday                     beta(x100)=  -4.75**  t= -2.12  p(beta<0)=0.0171  adjR2= 0.67%  n=1078
+volatile yesterday                 beta(x100)=  -3.75    t= -1.53  p(beta<0)=0.0636  adjR2= 0.36%  n=1064
+
+=== SUBPERIODS ===
+2016-06 to 2019-12                 beta(x100)=  -4.65*   t= -1.68  p(beta<0)=0.0466  adjR2= 0.47%  n=736
+COVID phase I (2020-01-21..05-07)  beta(x100)=  -4.62    t= -1.27  p(beta<0)=0.1020  adjR2= 0.46%  n=61
+COVID phase II (2020-05-08..12-31) beta(x100)=  -2.96    t= -0.46  p(beta<0)=0.3233  adjR2=-0.53%  n=132
+2021-01 to 2026-10                 beta(x100)=  -4.04*   t= -1.69  p(beta<0)=0.0454  adjR2= 0.43%  n=1201
+IN-SAMPLE 2016-06..2022-12         beta(x100)=  -2.75    t= -1.28  p(beta<0)=0.0994  adjR2= 0.16%  n=1358
+OUT-OF-SAMPLE 2023-01..2026-10     beta(x100)=  -6.33**  t= -2.33  p(beta<0)=0.0099  adjR2= 1.32%  n=784
+full sample EXCLUDING COVID phase I beta(x100)=  -4.15**  t= -2.24  p(beta<0)=0.0124  adjR2= 0.47%  n=2081
+year 2016                          beta(x100)=  -7.02    t= -0.72  p(beta<0)=0.2356  adjR2= 0.47%  n=117
+year 2017                          beta(x100)=   2.23    t=  0.44  p(beta<0)=0.6699  adjR2=-0.37%  n=208
+year 2018                          beta(x100)= -11.92*** t= -2.84  p(beta<0)=0.0023  adjR2= 3.43%  n=205
+year 2019                          beta(x100)=   3.83    t=  1.09  p(beta<0)=0.8621  adjR2=-0.02%  n=206
+year 2020                          beta(x100)=  -4.48    t= -1.37  p(beta<0)=0.0856  adjR2= 0.54%  n=205
+year 2021                          beta(x100)=  -4.88    t= -0.97  p(beta<0)=0.1657  adjR2= 0.09%  n=208
+year 2022                          beta(x100)=   1.09    t=  0.21  p(beta<0)=0.5817  adjR2=-0.45%  n=209
+year 2023                          beta(x100)=  -3.63    t= -0.75  p(beta<0)=0.2269  adjR2=-0.07%  n=207
+year 2024                          beta(x100)=  -6.25    t= -0.94  p(beta<0)=0.1737  adjR2= 1.06%  n=207
+year 2025                          beta(x100)=  -6.56    t= -1.48  p(beta<0)=0.0700  adjR2= 1.42%  n=204
+year 2026                          beta(x100)=  -7.89    t= -1.30  p(beta<0)=0.0961  adjR2= 1.20%  n=166
+
+=== ROBUSTNESS ===
+incl. roll-window days             beta(x100)=  -4.58*** t= -2.69  p(beta<0)=0.0036  adjR2= 0.67%  n=2544
+winsorized 1%/99%                  beta(x100)=  -2.34    t= -1.54  p(beta<0)=0.0623  adjR2= 0.12%  n=2142
+Huber robust regression            beta(x100)=  -2.58    t= -2.36
+signal = last price before 09:30   beta(x100)=  -4.15**  t= -2.42  p(beta<0)=0.0077  adjR2= 0.52%  n=2142
+small |R_ON| (bottom third)        beta(x100)=  -6.47    t= -0.60  p(beta<0)=0.2729  adjR2=-0.09%  n=714
+medium |R_ON|                      beta(x100)=  -1.79    t= -0.48  p(beta<0)=0.3141  adjR2=-0.11%  n=714
+large |R_ON| (top third)           beta(x100)=  -4.39**  t= -2.42  p(beta<0)=0.0078  adjR2= 1.10%  n=714
+permutation test (5000 shuffles): observed beta(x100)=-4.15, one-sided p=0.0010
+
+=== DECILES of R_ON: average R_FH ===
+       R_ON    R_FH      se    n
+dec                             
+1   -1.4625  0.0644  0.0415  215
+2   -0.6054 -0.0408  0.0335  214
+3   -0.3179  0.0663  0.0285  214
+4   -0.1186 -0.0066  0.0281  214
+5    0.0182  0.0055  0.0241  214
+6    0.1412  0.0042  0.0251  214
+7    0.2743  0.0002  0.0260  214
+8    0.4398  0.0380  0.0244  214
+9    0.6920  0.0015  0.0291  214
+10   1.4117 -0.0318  0.0339  215
+
+=== STRATEGY: long if overnight<0 else short, exit 10:00, 1 NQ contract, NO COSTS ===
+-- FULL
+V0 paper-style: signal & entry at 09:30 open trades= 2142 win= 50.4% avg=  1.02pt (t= 0.79) $   20.5/trade total=$    43,810 maxDD=$  -33,260 Sharpe= 0.27 | longs 2.04pt shorts 0.24pt
+V1 clean: signal 09:29:59, entry 09:30 open  trades= 2142 win= 50.3% avg=  0.98pt (t= 0.75) $   19.5/trade total=$    41,790 maxDD=$  -33,260 Sharpe= 0.25 | longs 1.98pt shorts 0.20pt
+V2 delayed: signal 09:30, entry 09:31 (2020+) trades= 1379 win= 50.5% avg=  0.02pt (t= 0.01) $    0.4/trade total=$       505 maxDD=$  -29,970 Sharpe=-0.05 | longs 0.84pt shorts -0.63pt
+Benchmark: always long 09:30->10:00          trades= 2142 win= 52.2% avg=  0.75pt (t= 0.55) $   14.9/trade total=$    31,990 maxDD=$  -45,420 Sharpe= 0.37 | longs 0.75pt shorts nanpt
+-- IN-SAMPLE (<=2022)
+V0 paper-style: signal & entry at 09:30 open trades= 1358 win= 51.1% avg=  0.84pt (t= 0.68) $   16.8/trade total=$    22,800 maxDD=$  -24,475 Sharpe= 0.25 | longs 2.41pt shorts -0.34pt
+V1 clean: signal 09:29:59, entry 09:30 open  trades= 1358 win= 51.0% avg=  0.77pt (t= 0.62) $   15.3/trade total=$    20,780 maxDD=$  -24,475 Sharpe= 0.23 | longs 2.32pt shorts -0.41pt
+V2 delayed: signal 09:30, entry 09:31 (2020+) trades=  622 win= 49.8% avg= -0.55pt (t=-0.24) $  -11.1/trade total=$    -6,890 maxDD=$  -29,970 Sharpe=-0.25 | longs -0.96pt shorts -0.24pt
+Benchmark: always long 09:30->10:00          trades= 1358 win= 52.1% avg=  1.23pt (t= 1.14) $   24.6/trade total=$    33,400 maxDD=$  -16,125 Sharpe= 0.50 | longs 1.23pt shorts nanpt
+-- OUT-OF-SAMPLE (2023+)
+V0 paper-style: signal & entry at 09:30 open trades=  784 win= 49.1% avg=  1.34pt (t= 0.47) $   26.8/trade total=$    21,010 maxDD=$  -33,260 Sharpe= 0.29 | longs 1.42pt shorts 1.28pt
+V1 clean: signal 09:29:59, entry 09:30 open  trades=  784 win= 49.1% avg=  1.34pt (t= 0.47) $   26.8/trade total=$    21,010 maxDD=$  -33,260 Sharpe= 0.29 | longs 1.42pt shorts 1.28pt
+V2 delayed: signal 09:30, entry 09:31 (2020+) trades=  757 win= 51.1% avg=  0.49pt (t= 0.17) $    9.8/trade total=$     7,395 maxDD=$  -29,175 Sharpe= 0.15 | longs 2.32pt shorts -0.95pt
+Benchmark: always long 09:30->10:00          trades=  784 win= 52.6% avg= -0.09pt (t=-0.03) $   -1.8/trade total=$    -1,410 maxDD=$  -45,420 Sharpe= 0.13 | longs -0.09pt shorts nanpt
+-- V1 by year (avg points per trade, win rate)
+      trades  avg_pts  win_rate  total_pts
+2016     117   -1.137     0.444    -133.00
+2017     208    0.585     0.514     121.75
+2018     205    3.924     0.556     804.50
+2019     206   -2.456     0.456    -506.00
+2020     205   -0.828     0.488    -169.75
+2021     208    5.531     0.582    1150.50
+2022     209   -1.096     0.502    -229.00
+2023     207    0.442     0.469      91.50
+2024     207    1.289     0.527     266.75
+2025     204    3.527     0.490     719.50
+2026     166   -0.164     0.476     -27.25
+-- same 1379 days (2020+): V1 avg 1.20pt vs V2 (1-min delay) avg 0.02pt
+median |09:30->10:00 move| = 28.2 points; median price 12494
